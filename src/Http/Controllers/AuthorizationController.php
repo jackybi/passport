@@ -68,18 +68,18 @@ class AuthorizationController
                 $client = $clients->find($authRequest->getClient()->getIdentifier())
             );
 
-            if ($token && $token->scopes === collect($scopes)->pluck('id')->all()) {
-                return $this->approveRequest($authRequest, $user);
-            }
-
-            $request->session()->put('authRequest', $authRequest);
-
-            return $this->response->view('passport::authorize', [
-                'client' => $client,
-                'user' => $user,
-                'scopes' => $scopes,
-                'request' => $request,
-            ]);
+            // if ($token && $token->scopes === collect($scopes)->pluck('id')->all()) {
+            //     return $this->approveRequest($authRequest, $user);
+            // }
+            return $this->approveRequest($authRequest, $user);
+            // $request->session()->put('authRequest', $authRequest);
+            //
+            // return $this->response->view('passport::authorize', [
+            //     'client' => $client,
+            //     'user' => $user,
+            //     'scopes' => $scopes,
+            //     'request' => $request,
+            // ]);
         });
     }
 
